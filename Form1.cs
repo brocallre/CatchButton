@@ -138,13 +138,18 @@ namespace CatchButton
             btnCatch.Location = initialButtonLocation;
 
             // 버튼 텍스트 복원
-            btnCatch.Text = "나를 잡아봐";
+            btnCatch.Text = "Catch Me";
 
             // 버튼 활성화
             btnCatch.Enabled = true;
 
             // 폼 제목 업데이트
             UpdateTitle();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

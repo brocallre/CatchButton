@@ -69,6 +69,7 @@ namespace CatchButton
             Margin = new Padding(7, 8, 7, 8);
             Name = "Form1";
             Text = "숨바꼭질 버튼";
+            Load += Form1_Load;
             ResumeLayout(false);
         }
 
