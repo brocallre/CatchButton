@@ -1,4 +1,5 @@
 # Catch_Button
+![효과음 재생](https://github.com/user-attachments/assets/d4c093d2-51a7-4599-82d0-4ef21c3a1c69)
 
 ## 개요
 - C# Windows Forms 프로그래밍 학습 프로젝트
@@ -17,7 +18,9 @@
 <img width="2041" height="1111" alt="스크린샷 2026-03-12 115336" src="https://github.com/user-attachments/assets/1274eb46-d7a4-46b8-8984-40a9b53249d3" />
 
 ### 2단계 - 시각적/청각적 피드백
-도망갈 때마다 시스템 경고음 재생
+
+https://github.com/user-attachments/assets/160331a6-f044-44d6-bc04-c167fb46af2b
+도망갈 때마다 시스템 경고음 재생 
 
 ### 3단계 - 점수 표시와 난이도 조정
 <img width="1926" height="1289" alt="점수 이미지" src="https://github.com/user-attachments/assets/26290dd4-9f27-4f2a-86df-187111807e1d" />
