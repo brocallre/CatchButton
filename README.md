@@ -1,4 +1,4 @@
-<img width="1926" height="1289" alt="스크린샷 2026-03-12 120449" src="https://github.com/user-attachments/assets/cc1af0e3-ff71-4411-a6fe-ac0ec2c54851" /># Catch_Button
+# Catch_Button
 
 ## 개요
 - C# Windows Forms 프로그래밍 학습 프로젝트
