@@ -8,26 +8,37 @@ namespace CatchButton
         // 현재 점수
         private int score = 0;
 
+        // 놓친 횟수 (도망간 횟수)
+        private int missCount = 0;
+
+        // 게임 오버 기준 횟수
+        private const int MAX_MISS = 20;
+
         // 버튼의 초기 크기 저장
         private Size initialButtonSize;
+
+        // 버튼의 초기 위치 저장
+        private Point initialButtonLocation;
 
         public Form1()
         {
             InitializeComponent();
 
-            // 버튼의 초기 크기를 저장해둔다
+            // 버튼의 초기 크기와 위치를 저장해둔다
             initialButtonSize = btnCatch.Size;
+            initialButtonLocation = btnCatch.Location;
 
             // 초기 폼 제목 설정
             UpdateTitle();
         }
 
         /// <summary>
-        /// 폼 제목에 점수와 버튼 좌표를 표시한다
+        /// 폼 제목에 점수, 남은 기회, 버튼 좌표를 표시한다
         /// </summary>
         private void UpdateTitle()
         {
-            this.Text = $"숨바꼭질 버튼 - 점수: {score}점 | 버튼 위치: X={btnCatch.Left}, Y={btnCatch.Top}";
+            int remaining = MAX_MISS - missCount;
+            this.Text = $"숨바꼭질 버튼 - 점수: {score}점 | 남은 기회: {remaining}회 | 버튼 위치: X={btnCatch.Left}, Y={btnCatch.Top}";
         }
 
         /// <summary>
@@ -40,6 +51,9 @@ namespace CatchButton
 
             // 도망가면 10점 감점
             score -= 10;
+
+            // 놓친 횟수 증가
+            missCount++;
 
             // 버튼이 폼 밖으로 나가지 않도록 이동 범위 제한
             int maxX = this.ClientSize.Width - btnCatch.Width;
@@ -54,6 +68,12 @@ namespace CatchButton
 
             // 폼 제목 업데이트 (점수 + 좌표)
             UpdateTitle();
+
+            // 20번 놓치면 게임 오버 처리
+            if (missCount >= MAX_MISS)
+            {
+                GameOver();
+            }
         }
 
         /// <summary>
@@ -82,6 +102,49 @@ namespace CatchButton
 
             // 축하 메시지 박스 표시
             MessageBox.Show("축하합니다~!", "버튼 잡기", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// 게임 오버 처리: 메시지 출력 후 모든 버튼을 비활성화한다
+        /// </summary>
+        private void GameOver()
+        {
+            // 게임 오버 메시지 표시
+            MessageBox.Show($"Game Over!\n최종 점수: {score}점", "게임 오버", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            // 잡기 버튼 비활성화 (더 이상 게임을 할 수 없게 함)
+            btnCatch.Enabled = false;
+            btnCatch.Text = "Game Over";
+
+            // 폼 제목 업데이트
+            this.Text = $"숨바꼭질 버튼 - Game Over! 최종 점수: {score}점";
+        }
+
+        /// <summary>
+        /// 다시 시작 버튼: 게임 관련 모든 정보를 초기화하고 처음부터 다시 시작한다
+        /// </summary>
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+            // 점수 초기화
+            score = 0;
+
+            // 놓친 횟수 초기화
+            missCount = 0;
+
+            // 버튼 크기를 초기 크기로 복원
+            btnCatch.Size = initialButtonSize;
+
+            // 버튼 위치를 초기 위치로 복원
+            btnCatch.Location = initialButtonLocation;
+
+            // 버튼 텍스트 복원
+            btnCatch.Text = "나를 잡아봐";
+
+            // 버튼 활성화
+            btnCatch.Enabled = true;
+
+            // 폼 제목 업데이트
+            UpdateTitle();
         }
     }
 }
